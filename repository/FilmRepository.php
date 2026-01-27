@@ -12,4 +12,15 @@ class FilmRepository extends MainRepository
 
         return $req->fetchAll();
     }
+
+    // Recherche de 10 films random
+    
+    public function getRandom10Films()
+    {
+        global $pdo;
+        $req = $pdo->prepare("SELECT * from movies_full ORDER BY RAND() LIMIT 10");
+        $req->execute();
+
+        return $req->fetchAll();
+    }
 }
