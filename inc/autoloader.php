@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once("./inc/pdo.php");
 
 spl_autoload_register(function ($class) {

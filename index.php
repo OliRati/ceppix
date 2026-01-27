@@ -1,5 +1,7 @@
 <?php
+
 require_once("./inc/autoloader.php");
+require_once("./model/User.php");
 
 // require_once('./controller/UserController.php');
 /*
@@ -10,10 +12,13 @@ header('Content-Type: application/json');
 echo json_encode($films);
 */
 
-include_once('./public/templates/register.html.php');
-
-include_once('./public/templates/login.html.php');
-
+if (isset($_SESSION['userid']) && !empty($_SESSION['userid'])) {
+    echo '<div>Bonjour '.$_SESSION['usernom'].'</div>';
+    echo '<a href="./fakerouter.php?ctrl=user&meth=logout">Logout</a>';
+} else {
+    include_once('./public/templates/register.html.php');
+    include_once('./public/templates/login.html.php');
+}
 
 /*<<<
 require_once('./model/User.php');

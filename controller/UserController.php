@@ -55,9 +55,17 @@ class UserController
                 if (password_verify($_POST['pwd'], $newUser[0]['pwd'])) {
                     $newUser = $newUser[0];
                     $user = new User($newUser['nom'], $newUser['email'], $newUser['pwd'], $newUser['roles'], $newUser['createdAt'], $newUser['updatedAt']);
+
+                    $_SESSION['userid'] = $newUser['id_user'];
+                    $_SESSION['usernom'] = $newUser['nom'];
                 }
             }
         }
+    }
+
+    public static function logout()
+    {
+        session_destroy();
     }
 
     public static function getUserByEmail()
