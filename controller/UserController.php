@@ -17,19 +17,35 @@ class UserController
             if ($_POST['confpwd'] !== $_POST['pwd'])
                 return;
 
-            $user = new User($_POST['nom'], $_POST['email'], $_POST['pwd']);
+            $date = new DateTime();
+            $date = $date->format("Y-m-d H:i:s");
+
+            $user = new User($_POST['nom'], $_POST['email'], $_POST['pwd'], "ROLE_USER", $date, $date);
 
             $userRepository = new UserRepository;
-            $userRepository->createUser($user);
+
+            $arrayUser = [
+                "nom" => $user->getNom(),
+                "email" => $user->getEmail(),
+                "pwd" => $user->getPwd(),
+                "roles" => $user->getRoles(),
+                "createdAt" => $user->getCreatedAt(),
+                "updatedAt" => $user->getUpdatedAt()
+            ];
+
+            $userRepository->create($arrayUser, "user");
         }
     }
 
-    public static function getUserByEmail() {
+    public static function getUserByEmail()
+    {
         $userRepository = new UserRepository;
         var_dump($userRepository->getBy(["user", "email", "baob@bob.com"]));
 
-        $userRepository->create(["nom" => "Bob",
-                                "email" => "baob@bob.com",
-                                "pwd" => "azerty"], "user");
+        $userRepository->create([
+            "nom" => "Bob",
+            "email" => "baob@bob.com",
+            "pwd" => "azerty"
+        ], "user");
     }
 }

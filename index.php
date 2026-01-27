@@ -2,15 +2,15 @@
 require_once("./inc/autoloader.php");
 
 // require_once('./controller/UserController.php');
-
+/*
 UserController::getUserByEmail();
-/* $films = FilmController::getFilmsByCast("eastwood");
+/ $films = FilmController::getFilmsByCast("eastwood");
 
 header('Content-Type: application/json');
 echo json_encode($films);
 */
 
-// include_once('./public/templates/register.html.php');
+include_once('./public/templates/register.html.php');
 
 
 /*<<<

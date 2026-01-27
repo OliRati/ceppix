@@ -1,4 +1,4 @@
-<form action="./inc/register.php" method="post">
+<form action="./register.php" method="post">
     <div>
         <input type="text" name="nom" placeholder="Nom">
         <span class="error"></span>

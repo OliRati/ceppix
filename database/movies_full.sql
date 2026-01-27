@@ -40,8 +40,8 @@ CREATE TABLE IF NOT EXISTS `movies_full` (
   `mpaa` varchar(25) DEFAULT NULL,
   `rating` smallint(3) NOT NULL,
   `popularity` int(11) DEFAULT NULL,
-  `modified` datetime NOT NULL,
-  `created` datetime DEFAULT NULL,
+  `modified` varchar(255) NOT NULL,
+  `created` varchar(255) DEFAULT NULL,
   `poster_flag` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_movies_full`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13319 ;

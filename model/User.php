@@ -3,18 +3,23 @@
 
 class User
 {
-    public function __construct($nom, $email, $password)
+    public function __construct($nom, $email, $password, $role, $createdAt, $updatedAt)
     {
         $this->setNom($nom);
         $this->setEmail($email);
         $this->setPwd($password);
+        $this->setRoles($role);
+        $this->setCreatedAt($createdAt);
+        $this->setUpdatedAt($updatedAt);
     }
 
     // Propriétés
     private $nom;
-    private $role = "ROLE_USER";
     private $email;
     private $password;
+    private $roles = "ROLE_USER";
+    private $createdAt;
+    private $updatedAt;
 
     // Methodes
     // Setter qui sert a controler les données attribuées aux propriétés de la classe
@@ -67,4 +72,35 @@ class User
     {
         return $this->nom;
     }
+
+    public function setRoles($role)
+    {
+        $this->roles = $role;
+    }
+
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
 }
