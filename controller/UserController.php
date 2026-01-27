@@ -11,11 +11,11 @@ class UserController
             foreach ($_POST as $key => $value) {
                 $_POST[$key] = htmlspecialchars($value);
                 if (empty($value))
-                    return;
+                    return false;
             }
 
             if ($_POST['confpwd'] !== $_POST['pwd'])
-                return;
+                return false;
 
             $date = new DateTime();
             $date = $date->format("Y-m-d H:i:s");
@@ -34,6 +34,29 @@ class UserController
             ];
 
             $userRepository->create($arrayUser, "user");
+            return true;
+        }
+
+        return false;
+    }
+
+    public static function nettoyage($postValue)
+    {
+        return htmlspecialchars($postValue);
+    }
+
+    public static function login()
+    {
+        if (isset($_POST['submit']) && !empty($_POST['submit'])) {
+            $userRepository = new UserRepository;
+            $newUser = $userRepository->getBy(['user', 'email', UserController::nettoyage($_POST['email'])]);
+
+            if (sizeof($newUser) > 0) {
+                if (password_verify($_POST['pwd'], $newUser[0]['pwd'])) {
+                    $newUser = $newUser[0];
+                    $user = new User($newUser['nom'], $newUser['email'], $newUser['pwd'], $newUser['roles'], $newUser['createdAt'], $newUser['updatedAt']);
+                }
+            }
         }
     }
 

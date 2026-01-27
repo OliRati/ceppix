@@ -18,6 +18,11 @@ class MainRepository
         return $req->fetchAll();
     }
 
+    /**
+     * Summary of getBy
+     * @param mixed $value ['table', 'key', 'value']
+     * @return array
+     */
     public function getBy(?array $value)
     {
         global $pdo;

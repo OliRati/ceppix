@@ -12,6 +12,8 @@ echo json_encode($films);
 
 include_once('./public/templates/register.html.php');
 
+include_once('./public/templates/login.html.php');
+
 
 /*<<<
 require_once('./model/User.php');
