@@ -19,6 +19,9 @@ if (isset($_SESSION['userid']) && !empty($_SESSION['userid'])) {
     // Afficher 10 films
     include_once('./public/templates/previewFilms.html.php');
 
+    // Afficher 10 Series de TVMaze
+    include_once('./public/templates/previewSeries.html.php');
+
 } else {
     include_once('./public/templates/register.html.php');
     include_once('./public/templates/login.html.php');

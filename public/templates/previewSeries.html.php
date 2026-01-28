@@ -59,19 +59,20 @@
         }
     }
 </style>
+
+<h2>List of 10 series from TVMaze API</h2>
+
 <div class="film-container">
-    <?php foreach (FilmController::getRandom10Films() as $film) { ?>
+    <?php foreach (SerieController::getRandom10SeriesFromTVMaze() as $film) { ?>
         <div class="film-card">
             <div class="film-card-top">
-                <p class="title"><?= $film['title'] ?></p>
+                <p class="title"><?= $film['name'] ?></p>
                 <hr>
-                <p class="plot"><span>Résumé :</span> <?= $film['plot'] ?></p>
-                <p class="year"><span>Date :</span> <?= $film['year'] ?></p>
-                <p class="cast"><span>Acteur(s) :</span> <?= $film['cast'] ?></p>
-                <p class="directors"><span>Producteur(s) :</span> <?= $film['directors'] ?></p>
+                <p class="plot"><span>Type :</span> <?= $film['type'] ?></p>
+                <p class="year"><span>Language :</span> <?= $film['language'] ?></p>
             </div>
             <div class="film-card-bottom">
-                <div class="film-cover"><img src="<?= $film['img'] ?>" alt="<?= 'cover ' . $film['title'] ?>"></div>
+                <div class="film-cover"><img src="<?= $film['image']['original'] ?>" alt=""></div>
             </div>
         </div>
     <?php } ?>
