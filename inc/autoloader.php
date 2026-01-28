@@ -3,6 +3,10 @@
 session_start();
 
 require_once("./inc/pdo.php");
+require_once("./inc/helper.php");
+
+// Add Autoload from composer
+require_once('./vendor/autoload.php');
 
 spl_autoload_register(function ($class) {
     $path = __DIR__."/..";

@@ -15,7 +15,7 @@ class MainRepository
         $req = $pdo->prepare("INSERT INTO $table ($keys) VALUES ($keysAlias)");
         $req->execute($values);
 
-        return $req->fetchAll();
+        return $pdo->lastInsertId();
     }
 
     /**

@@ -33,11 +33,46 @@ class UserController
                 "updatedAt" => $user->getUpdatedAt()
             ];
 
-            $userRepository->create($arrayUser, "user");
+            $lastId = $userRepository->create($arrayUser, "user");
+
+            // Appel upload avatar
+            $ret = UserController::uploadAvatar($lastId);
+            if (!empty($ret)) {
+                showError('Erreur register', $ret);
+                die();
+            }
+
             return true;
         }
 
         return false;
+    }
+
+    public static function uploadAvatar($lastid)
+    {
+        if (!isset($_FILES['avatar']))
+            return "Pas de fichier";
+        if ($_FILES['avatar']['error'] > 0)
+            return "Error";
+        if (!preg_match("/(jpg)|(jpeg)|(png)|(webp)|(gif)/", $_FILES['avatar']['type']))
+            return "Type mime";
+
+        if (!file_exists("./public/assets/avatar"))
+            mkdir("./public/assets/avatar", 0755);
+
+        if (!file_exists("./public/assets/avatar/thumbnail"))
+            mkdir("./public/assets/avatar/thumbnail", 0755);
+
+        move_uploaded_file($_FILES['avatar']['tmp_name'], "./public/assets/avatar/" . $_FILES['avatar']['full_path']);
+
+        $image = new \Gumlet\ImageResize("./public/assets/avatar/" . $_FILES['avatar']['full_path']);
+        $image->resizeToWidth(300);
+        $image->save("./public/assets/avatar/" . $lastid . ".webp", IMAGETYPE_WEBP);
+
+        $image->resizeToWidth(50);
+        $image->save("./public/assets/avatar/thumbnail/" . $lastid . ".webp", IMAGETYPE_WEBP);
+
+        unlink("./public/assets/avatar/" . $_FILES['avatar']['full_path']);
     }
 
     public static function nettoyage($postValue)

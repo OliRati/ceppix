@@ -13,7 +13,7 @@ echo json_encode($films);
 */
 
 if (isset($_SESSION['userid']) && !empty($_SESSION['userid'])) {
-    echo '<div>Bonjour '.$_SESSION['usernom'].'</div>';
+    echo '<div>Bonjour '.$_SESSION['usernom'].'<img src="./public/assets/avatar/thumbnail/'.$_SESSION['userid'].'.webp"></div>';
     echo '<a href="./fakerouter.php?ctrl=user&meth=logout">Logout</a>';
 
     // Afficher 10 films
