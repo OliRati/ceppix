@@ -19,8 +19,9 @@ $loader = new \Twig\Loader\FilesystemLoader(__DIR__.'/../public/templates');
 $loader->addPath(__DIR__ . '/../public/templates', 'layouts');
 
 // Initialize environment with production settings
+//     'cache' => __DIR__ . '/../var/cache/twig',
 $twig = new \Twig\Environment($loader, [
-    'cache' => __DIR__ . '/var/cache/twig',
+    'cache' => false,
     'auto_reload' => true, // Check for template changes (disable in production)
     'strict_variables' => true, // Throw errors for undefined variables
     'autoescape' => 'html', // Default escaping strategy

@@ -5,6 +5,8 @@ class SerieController
 
     public static function getRandom10SeriesFromTVMaze()
     {
+        global $twig;
+
         $results = [];
         while (count($results) < 10) {
             $id = rand(1, 60000);
@@ -26,6 +28,7 @@ class SerieController
                 $results[$key]['network']['name'] = 'inconnu';
             }                
         }
-        return $results;
+
+        return $twig->render("previewSeries.html.twig",["series" => $results]);
     }
 }

@@ -3,31 +3,17 @@
 require_once("./inc/autoloader.php");
 require_once("./model/User.php");
 
-// require_once('./controller/UserController.php');
-/*
-UserController::getUserByEmail();
-/ $films = FilmController::getFilmsByCast("eastwood");
-
-header('Content-Type: application/json');
-echo json_encode($films);
-*/
-
-include_once './public/templates/fortune.html.php';
-
-// Load and render in one step
-echo $twig->render('footer.html.twig', [
-    'joke' => FortuneController::getFortuneString()
-]);
+echo FortuneController::getFortuneString();
 
 if (isset($_SESSION['userid']) && !empty($_SESSION['userid'])) {
     echo '<div>Bonjour '.$_SESSION['usernom'].'<img src="./public/assets/avatar/thumbnail/'.$_SESSION['userid'].'.webp"></div>';
     echo '<a href="./fakerouter.php?ctrl=user&meth=logout">Logout</a>';
 
     // Afficher 10 films
-    include_once('./public/templates/previewFilms.html.php');
+    echo FilmController::getRandom10Films();
 
     // Afficher 10 Series de TVMaze
-    include_once('./public/templates/previewSeries.html.php');
+    echo SerieController::getRandom10SeriesFromTVMaze();
 
 } else {
     include_once('./public/templates/register.html.php');
@@ -56,4 +42,8 @@ $user->setPwd("abcdefABCDEF?123456");
 var_dump($user);
 
 var_dump($user->getEmail(), $user->getNom());
+
+// json encoding
+header('Content-Type: application/json');
+echo json_encode($films);
 */

@@ -3,3 +3,4 @@ public/assets/img/posters/.jpeg
 .vs/*
 *.webp
 /vendor/
+/var/

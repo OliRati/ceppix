@@ -15,6 +15,8 @@ class FilmController
 
     public static function getRandom10Films()
     {
+        global $twig;
+
         $filmRepository = new FilmRepository();
 
         $films = $filmRepository->getRandom10Films();
@@ -29,6 +31,6 @@ class FilmController
             }
         }
 
-        return $films;
+        return $twig->render("previewFilms.html.twig",["films" => $films]);
     }
 }

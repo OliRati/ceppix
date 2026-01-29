@@ -23,6 +23,7 @@
 
     .film-card {
         background-color: #E0E0E0;
+        color: #303030;
         border-radius: 0.5rem;
         padding: 1rem;
         width: 16rem;
@@ -42,7 +43,7 @@
             color: black;
         }
 
-        .plot, .year, .cast, .directors {
+        .plot, .year, .cast, .directors, .summary {
             font-size: 1rem;
             color: #303030;
 
@@ -59,20 +60,41 @@
         }
     }
 </style>
+<h2>
+    List of 10 series from TVMaze API
+</h2>
 <div class="film-container">
-    <?php foreach (FilmController::getRandom10Films() as $film) { ?>
+    {% for serie in series %}
         <div class="film-card">
             <div class="film-card-top">
-                <p class="title"><?= $film['title'] ?></p>
-                <hr>
-                <p class="plot"><span>Résumé :</span> <?= $film['plot'] ?></p>
-                <p class="year"><span>Date :</span> <?= $film['year'] ?></p>
-                <p class="cast"><span>Acteur(s) :</span> <?= $film['cast'] ?></p>
-                <p class="directors"><span>Producteur(s) :</span> <?= $film['directors'] ?></p>
+                <p class="title">
+                    {{ serie.name }}
+                </p>
+                <hr/>
+                <p class="plot">
+                    <span>
+                        Type :
+                    </span>
+                    {{ serie.type }}
+                </p>
+                <p class="year">
+                    <span>
+                        Language :
+                    </span>
+                    {{ serie.language }}
+                </p>
+                <p class="summary">
+                    <span>
+                        Résumé :
+                    </span>
+                    {{ serie.summary|striptags }}
+                </p>
             </div>
             <div class="film-card-bottom">
-                <div class="film-cover"><img src="<?= $film['img'] ?>" alt="<?= 'cover ' . $film['title'] ?>"></div>
+                <div class="film-cover">
+                    <img src="{{ serie.image.medium }}" alt="" />
+                </div>
             </div>
         </div>
-    <?php } ?>
+    {% endfor %}
 </div>
