@@ -9,12 +9,14 @@ if (isset($_SESSION['userid']) && !empty($_SESSION['userid'])) {
     echo '<div>Bonjour '.$_SESSION['usernom'].'<img src="./public/assets/avatar/thumbnail/'.$_SESSION['userid'].'.webp"></div>';
     echo '<a href="./fakerouter.php?ctrl=user&meth=logout">Logout</a>';
 
+    echo SearchController::formSearch();
+    echo SearchController::resultSearch();
+
     // Afficher 10 films
     echo FilmController::getRandom10Films();
 
     // Afficher 10 Series de TVMaze
-    echo SerieController::getRandom10SeriesFromTVMaze();
-
+    echo SerieController::getRandom10SeriesFromTVMaze();    
 } else {
     include_once('./public/templates/register.html.php');
     include_once('./public/templates/login.html.php');

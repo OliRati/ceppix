@@ -60,8 +60,7 @@
     }
 </style>
 
-<h2>Liste de 10 films</h2>
-
+<h2>Resultats de la recherche</h2>
 <div class="film-container">
     {% for film in films %}
         <div class="film-card">
@@ -101,5 +100,7 @@
                 </div>
             </div>
         </div>
+    {% else %}
+        Aucun resultat
     {% endfor %}
 </div>
