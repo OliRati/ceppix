@@ -12,6 +12,13 @@ header('Content-Type: application/json');
 echo json_encode($films);
 */
 
+include_once './public/templates/fortune.html.php';
+
+// Load and render in one step
+echo $twig->render('footer.html.twig', [
+    'joke' => FortuneController::getFortuneString()
+]);
+
 if (isset($_SESSION['userid']) && !empty($_SESSION['userid'])) {
     echo '<div>Bonjour '.$_SESSION['usernom'].'<img src="./public/assets/avatar/thumbnail/'.$_SESSION['userid'].'.webp"></div>';
     echo '<a href="./fakerouter.php?ctrl=user&meth=logout">Logout</a>';

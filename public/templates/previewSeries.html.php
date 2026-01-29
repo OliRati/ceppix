@@ -23,6 +23,7 @@
 
     .film-card {
         background-color: #E0E0E0;
+        color: #303030;
         border-radius: 0.5rem;
         padding: 1rem;
         width: 16rem;
@@ -42,7 +43,7 @@
             color: black;
         }
 
-        .plot, .year, .cast, .directors {
+        .plot, .year, .cast, .directors, .summary {
             font-size: 1rem;
             color: #303030;
 
@@ -70,9 +71,10 @@
                 <hr>
                 <p class="plot"><span>Type :</span> <?= $film['type'] ?></p>
                 <p class="year"><span>Language :</span> <?= $film['language'] ?></p>
+                <p class="summary"><span>Résumé :</span> <?= $film['summary'] ?></p>
             </div>
             <div class="film-card-bottom">
-                <div class="film-cover"><img src="<?= $film['image']['original'] ?>" alt=""></div>
+                <div class="film-cover"><img src="<?= $film['image']['medium'] ?>" alt=""></div>
             </div>
         </div>
     <?php } ?>
