@@ -13,6 +13,15 @@ class FilmRepository extends MainRepository
         return $req->fetchAll();
     }
 
+    public function getFilmsBy($searchString, $filter)
+    {
+        global $pdo;
+        $req = $pdo->prepare("SELECT * FROM movies_full WHERE :filter LIKE :search");
+        $req->execute([":filter" => $filter, ":search" => "%$searchString%"]);
+
+        return $req->fetchAll();
+    }
+
     // Recherche de 10 films random
     
     public function getRandom10Films()

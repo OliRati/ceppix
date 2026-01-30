@@ -14,9 +14,11 @@ class SearchController
 
         if (isset($_POST["search-button"])) {
             $searchString = trim(strip_tags($_POST["search-text"]));
+            $filter = trim(strip_tags($_POST["filter"]));
 
-            $films = FilmController::getFilmsByCast($searchString);
-
+            // $films = FilmController::getFilmsByCast($searchString);
+            $films = FilmController::getFilmsBy($searchString, $filter);
+            
             foreach ($films as $key => $film) {
                 $filename = './public/assets/img/posters/' . $film['id_movies_full'] . '.jpg';
 

@@ -59,7 +59,7 @@ function isValidDate(string $date, string $format = 'd/m/Y'): bool
 
 function showError($title, $text)
 {
-    ?>
+?>
     <style>
         @keyframes error-blink {
             0% {
@@ -94,8 +94,34 @@ function showError($title, $text)
     </style>
 
     <div class="error-frame">
-        <div class="error-title"><?=  $title ?></div>
+        <div class="error-title"><?= $title ?></div>
         <div class="error-text"><?= $text ?></div>
     </div>
-    <?php
+<?php
+}
+
+
+/**
+ * Summary of urlExists
+ * Check if an url exists on remote server without
+ * downloading file
+ * 
+ * @param mixed $url
+ * @return bool
+ */
+function urlExists($url)
+{
+    $ch = curl_init($url);
+
+    curl_setopt($ch, CURLOPT_NOBODY, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+    curl_exec($ch);
+
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    return ($httpCode >= 200 && $httpCode < 400);
 }

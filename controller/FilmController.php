@@ -8,6 +8,12 @@ class FilmController
         return ($filmRepository->getFilmsByCast($cast));
     }
 
+    public static function getFilmsBy($searchString, $filter )
+    {
+        $filmRepository = new FilmRepository();
+        return ($filmRepository->getFilmsBy($searchString, $filter));
+    }
+
     public static function getFilmsByYear($year)
     {
 

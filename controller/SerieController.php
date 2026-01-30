@@ -19,9 +19,9 @@ class SerieController
         foreach ($results as $key => $value) {
             if (
                 empty($value['image'])
-                || !@file_get_contents($value['image']['medium'])
+                || !urlExists($value['image']['medium'])
             ) {
-                $results[$key]['image']['medium'] = './public/assets/img/default_series.webp';
+                $results[$key]['image']['medium'] = './public/assets/img/cover_not_available.jpg';
             }
 
             if ( !empty($value['network']) ) {
