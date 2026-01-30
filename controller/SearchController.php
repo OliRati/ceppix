@@ -16,9 +16,8 @@ class SearchController
             $searchString = trim(strip_tags($_POST["search-text"]));
             $filter = trim(strip_tags($_POST["filter"]));
 
-            // $films = FilmController::getFilmsByCast($searchString);
             $films = FilmController::getFilmsBy($searchString, $filter);
-            
+
             foreach ($films as $key => $film) {
                 $filename = './public/assets/img/posters/' . $film['id_movies_full'] . '.jpg';
 
@@ -29,7 +28,11 @@ class SearchController
                 }
             }
 
-            return $twig->render("search/results.html.twig", ["films" => $films]);
+            return $twig->render("search/results.html.twig", [
+                "search" => $searchString,
+                "filter" => $filter,
+                "films" => $films
+            ]);
         }
 
         return false;

@@ -8,7 +8,7 @@ class FilmController
         return ($filmRepository->getFilmsByCast($cast));
     }
 
-    public static function getFilmsBy($searchString, $filter )
+    public static function getFilmsBy($searchString, $filter)
     {
         $filmRepository = new FilmRepository();
         return ($filmRepository->getFilmsBy($searchString, $filter));
@@ -16,7 +16,8 @@ class FilmController
 
     public static function getFilmsByYear($year)
     {
-
+        $filmRepository = new FilmRepository();
+        return $filmRepository->getFilmsByYear($year);
     }
 
     public static function getRandom10Films()
@@ -37,6 +38,6 @@ class FilmController
             }
         }
 
-        return $twig->render("previewFilms.html.twig",["films" => $films]);
+        return $twig->render("previewFilms.html.twig", ["films" => $films]);
     }
 }
