@@ -1,0 +1,79 @@
+<style>
+/*
+ *  Search bar CSS customization
+ */
+
+.search-bar {
+    padding: 0.8rem;
+    border: 2px solid lightcyan;
+    border-radius: 2rem;
+    width: fit-content;
+    margin: 2rem auto;
+    background-color: antiquewhite;
+
+    form {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 0;
+        padding: 0;
+    }
+    
+    input[type="text"] {
+        border: none;
+        background-color: transparent;
+        font-size: 1.5rem;
+        margin: 0;
+        padding: 0;
+        color: gray;
+    }
+
+    input[type="text"]:focus {
+        outline: none;
+        border: none;
+        box-shadow: none;
+        color: black;
+    }
+
+    button[type="submit"] {
+        background-color: transparent;
+        border: none;
+        padding: 0;
+
+        img {
+            width: 1.5rem;
+            height: 1.5rem;
+            object-fit: contain;
+        }
+    }
+
+    button[type="submit"]:hover {
+        cursor: pointer;
+        background-color: transparent;
+        transform: scale(1.2);
+        transform: all 0.3 ease-out;
+    }
+
+}   
+</style>
+<div class="search-bar">
+    <form method="POST">
+        <input type="text" name="search-text" placeholder="Rechercher une musique..." value="" required />
+        <button type="submit" name="search-button">
+            <img src="./public/assets/icon/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="Search icon"></button>
+            <div>
+                <select name="filter">
+                    <option value="recording">
+                        Titre
+                    </option>
+                    <option value="artist">
+                        Artiste
+                    </option>
+                    <option value="genre">
+                        Genre
+                    </option>
+                </select>
+            </div>
+        </form>
+    </div>
+    

@@ -1,0 +1,41 @@
+<style>
+    .music-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .recording {
+        background-color: gray;
+        padding: 1rem;
+        width: 16rem;
+        border-radius: 0.5rem;
+    }
+</style>
+<h3>
+    Preview Music Brainz
+</h3>
+<div class="music-container">
+    {% for recording in musics.recordings %}
+        <div class="recording">
+            <div class="title">
+                Titre :
+                {{ recording.title }}
+            </div>
+            <div>
+                Artistes :
+                {% for artist in recording['artist-credit'] %}
+          {{ artist.name}}
+            {% endfor %}
+            </div>
+            <div>
+                Durée :
+                {{ recording.length }} s
+            </div>
+            <div>
+                Date :
+                {{ recording['first-release-date'] }}
+            </div>
+        </div>
+    {% endfor %}
+</div>
